@@ -1,0 +1,15 @@
+<IfModule mod_fastcgi.c>
+AddHandler fastcgi-script .fcgi
+</IfModule>
+<IfModule mod_fcgid.c>
+AddHandler fcgid-script .fcgi
+</IfModule>
+Options +FollowSymLinks +ExecCGI
+
+RewriteEngine on
+# public_html以降のパスを指定
+RewriteBase /hello_sinatra/public
+DirectoryIndex dispatch.fcgi
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ dispatch.fcgi/$1 [QSA,L]

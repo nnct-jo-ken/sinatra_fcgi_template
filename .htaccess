@@ -1,0 +1,6 @@
+RewriteEngine on
+# public_html以降のパスを指定
+RewriteBase /hello_sinatra
+RewriteRule ^$ public/ [L]
+RewriteRule (.*) public/$1 [L]
+
